@@ -5,7 +5,9 @@ const App = () => {
   return (
     <div>
       <nav className="border-b-[1px] border-slate-100">
-        <Navbar />
+        <div className="w-11/12 md:w-10/12 mx-auto">
+          <Navbar />
+        </div>
       </nav>
       <section className="w-11/12 md:w-10/12 mx-auto">
         <Outlet />

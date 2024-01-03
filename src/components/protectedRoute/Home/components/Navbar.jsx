@@ -1,7 +1,9 @@
 import { NavLink } from "react-router-dom";
+import { CiSearch, CiShoppingCart, CiUser } from "react-icons/ci";
+import { BsHandbag } from "react-icons/bs";
 
 const Navbar = () => {
-    
+
     const navMenu =
         <>
             <NavLink>Home</NavLink>
@@ -21,16 +23,22 @@ const Navbar = () => {
                             {navMenu}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Unibuy</a>
+                    <a className="cursor-pointer hidden font-semibold md:text-xl md:flex gap-2"><span className="rounded-full"><BsHandbag /></span>Unibuy</a>
                 </div>
+                <a className="cursor-pointer md:hidden font-semibold text-xl flex gap-2"><span className="rounded-full"><BsHandbag /></span>Unibuy</a>
                 {/* navbar center part [for Desktop] */}
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal px-1 space-x-4">
+                    <ul className="menu menu-horizontal px-1  space-x-4">
                         {navMenu}
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Button</a>
+                    {/* icons div */}
+                    <div className="text-2xl  flex font-semibold">
+                        <span className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full hidden md:block"><CiSearch /></span>
+                        <span className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full"><CiShoppingCart /></span>
+                        <span className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full"><CiUser /></span>
+                    </div>
                 </div>
             </div>
         </div>
