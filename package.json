@@ -12,7 +12,7 @@
   "dependencies": {
     "@tanstack/react-query": "^5.17.0",
     "aos": "^3.0.0-beta.6",
-    "axios": "^1.6.3",
+    "axios": "^1.6.5",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
