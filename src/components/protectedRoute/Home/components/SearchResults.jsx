@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import SingleProduct from "./SingleProduct";
-import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { GlobalContext } from "../../../../context/GlobalProvider";
-import debounce from 'lodash/debounce';
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 
-const AllProducts = () => {
+const SearchResults = () => {
     const [products, setProducts] = useState([]);
     // pagination setup
 
@@ -14,20 +13,12 @@ const AllProducts = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = Math.ceil(totalItems / itemsPerPage);
     const pages = [...Array(numberOfPages).keys()];
-    console.log(pages)
 
-    useEffect(() => {
-        axios('https://dummyjson.com/products').then(data => {
-            setTotalItems(data.data.products.length);
-            setProducts(data.data.products);
-
-        })
-    }, [])
-    useEffect(() => {
-        axios(`https://dummyjson.com/products?limit=${itemsPerPage}&skip=${currentPage}`).then(data => {
-            setProducts(data.data.products);
-        })
-    }, [itemsPerPage, currentPage])
+    const {search} = useContext(GlobalContext);
+    useEffect(()=>{
+        axios(`https://dummyjson.com/products/search?q=${search}&limit=${itemsPerPage}&skip=${currentPage}`)
+        .then(data=>{setProducts(data.data.products);setTotalItems(data.data.products.length)});
+    },[search , itemsPerPage , currentPage]);
 
     const handleItemsPerPage = e => {
         const val = parseInt(e.target.value);
@@ -46,9 +37,10 @@ const AllProducts = () => {
             setCurrentPage(currentPage + 1);
         }
     }
-    return (
-        <div className="">
 
+    console.log(products)
+    return (
+        <div>
             {/* items per page */}
             <div className="flex justify-between items-center m-2">
                 <div>
@@ -66,10 +58,12 @@ const AllProducts = () => {
                     <option value="50">50</option>
                 </select>
             </div>
+
             {/* Products */}
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-5 lg:gap-6">
                 {products.map((product) => <SingleProduct product={product} key={product.id}></SingleProduct>)}
             </div>
+
             {/* pagination */}
             <div className="flex justify-end">
                 <div className=" m-2 shadow rounded-lg max-w-min flex">
@@ -100,4 +94,4 @@ const AllProducts = () => {
     );
 };
 
-export default AllProducts;
+export default SearchResults;

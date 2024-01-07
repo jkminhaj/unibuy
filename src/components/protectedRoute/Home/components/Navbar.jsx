@@ -14,7 +14,7 @@ const Navbar = () => {
     // search logic
     const handleSearch = e => {
         e.preventDefault();
-        const search = e.target.search.value ;
+        const search = e.target.value ;
         setSearch(search)
     }
 
@@ -22,11 +22,11 @@ const Navbar = () => {
     const SearchBox =
         <>
             <div data-aos="fade-left" className="border w-[500px] flex py-[6px] px-2 rounded-sm gap-2 justify-between">
-                <form onSubmit={handleSearch} className="flex gap-2">
+                <form onSubmit={e=>{e.preventDefault();setSearch(e.target.search.value)}} className="flex gap-2">
                     <button className="text-2xl hover:text-gray"><CiSearch /></button>
-                    <input type="text" className="outline-none w-[400px]" name="search" placeholder="Search product" />
+                    <input onChange={handleSearch} type="text" className="outline-none w-[400px]" name="search" placeholder="Search product" />
                 </form>
-                <button className="text-xl hover:text-gray-400" onClick={() => { setShowSearchBox(!showSearchBox) ;setSearchClose(!searchClose) }}><VscClose /></button>
+                <button className="text-xl hover:text-gray-400" onClick={() => { setShowSearchBox(!showSearchBox) ;setSearch('') }}><VscClose /></button>
             </div>
         </>
 
