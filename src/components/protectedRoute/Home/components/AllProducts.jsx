@@ -9,7 +9,7 @@ const AllProducts = () => {
     const [products, setProducts] = useState([]);
     // pagination setup
 
-    const [itemsPerPage, setItemsPerPage] = useState(8);
+    const [itemsPerPage, setItemsPerPage] = useState(12);
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
     const numberOfPages = Math.ceil(totalItems / itemsPerPage);

@@ -16,8 +16,12 @@ const SearchResults = () => {
 
     const {search} = useContext(GlobalContext);
     useEffect(()=>{
+        axios(`https://dummyjson.com/products/search?q=${search}`)
+        .then(data=>{setTotalItems(data.data.products.length)});
+    },[search])
+    useEffect(()=>{
         axios(`https://dummyjson.com/products/search?q=${search}&limit=${itemsPerPage}&skip=${currentPage}`)
-        .then(data=>{setProducts(data.data.products);setTotalItems(data.data.products.length)});
+        .then(data=>{setProducts(data.data.products)});
     },[search , itemsPerPage , currentPage]);
 
     const handleItemsPerPage = e => {

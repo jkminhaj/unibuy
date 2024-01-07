@@ -11,7 +11,7 @@ const SingleProduct = ({ product }) => {
     
 
     return (
-        < div >
+        < div data-aos="zoom-in">
             <div className="card bg-base-100">
                 <div className="bg-[#F8FAFC] shadow-sm rounded-xl">
                     <figure className="p-6"><img className="h-52  rounded-xl" src={img1} alt="Shoes" /></figure>
