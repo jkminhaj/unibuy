@@ -14,6 +14,7 @@
     "aos": "^3.0.0-beta.6",
     "axios": "^1.6.5",
     "localforage": "^1.10.0",
+    "lodash": "^4.17.21",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

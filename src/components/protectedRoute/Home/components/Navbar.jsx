@@ -1,28 +1,32 @@
 import { NavLink } from "react-router-dom";
 import { CiSearch, CiShoppingCart, CiUser } from "react-icons/ci";
 import { BsHandbag } from "react-icons/bs";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { VscClose } from "react-icons/vsc";
 import CartModal from "../../../Modals/CartModal";
+import { GlobalContext } from "../../../../context/GlobalProvider";
 
 const Navbar = () => {
     const [showSearchBox, setShowSearchBox] = useState(false);
     const [cartModal, setCartModal] = useState(false);
-
+    const {setSearch,searchClose,setSearchClose} =useContext(GlobalContext);
+    
     // search logic
-    const handleSearch = () => {
-        setShowSearchBox(true)
+    const handleSearch = e => {
+        e.preventDefault();
+        const search = e.target.search.value ;
+        setSearch(search)
     }
 
     // search box ui
     const SearchBox =
         <>
             <div data-aos="fade-left" className="border w-[500px] flex py-[6px] px-2 rounded-sm gap-2 justify-between">
-                <div className="flex gap-2">
+                <form onSubmit={handleSearch} className="flex gap-2">
                     <button className="text-2xl hover:text-gray"><CiSearch /></button>
-                    <input type="text" className="outline-none w-[400px]" placeholder="Search product" />
-                </div>
-                <button className="text-xl hover:text-gray-400" onClick={() => { setShowSearchBox(!showSearchBox) }}><VscClose /></button>
+                    <input type="text" className="outline-none w-[400px]" name="search" placeholder="Search product" />
+                </form>
+                <button className="text-xl hover:text-gray-400" onClick={() => { setShowSearchBox(!showSearchBox) ;setSearchClose(!searchClose) }}><VscClose /></button>
             </div>
         </>
 
@@ -57,7 +61,7 @@ const Navbar = () => {
                 <div className="navbar-end">
                     {/* icons div */}
                     <div className="text-2xl  flex font-semibold">
-                        {showSearchBox || <span onClick={handleSearch} data-aos="fade-right" className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full hidden md:block cursor-pointer"><CiSearch /></span>}
+                        {showSearchBox || <span onClick={()=>setShowSearchBox(true)} data-aos="fade-right" className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full hidden md:block cursor-pointer"><CiSearch /></span>}
                         <div className="relative">
                             <button className="hover:bg-blue-50 md:p-3 p-1 hover:rounded-full"><CiShoppingCart /></button>
                         </div>

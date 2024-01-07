@@ -7,10 +7,13 @@ import { RouterProvider } from 'react-router-dom'
 // AOS - Animation
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import GlobalProvider from './context/GlobalProvider'
 AOS.init();
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
+    <GlobalProvider>
+      <RouterProvider router={router} />
+    </GlobalProvider>
   </React.StrictMode>,
 )
