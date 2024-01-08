@@ -7,8 +7,8 @@ import debounce from 'lodash/debounce';
 
 const AllProducts = () => {
     const [products, setProducts] = useState([]);
-    // pagination setup
 
+    // pagination setup
     const [itemsPerPage, setItemsPerPage] = useState(12);
     const [totalItems, setTotalItems] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
@@ -71,7 +71,7 @@ const AllProducts = () => {
                 {products.map((product) => <SingleProduct product={product} key={product.id}></SingleProduct>)}
             </div>
             {/* pagination */}
-            <div className="flex justify-end">
+            <div className="flex justify-center mt-4">
                 <div className=" m-2 shadow rounded-lg max-w-min flex">
                     <button
                         className="join-item px-3 py-2 text-white rounded focus:outline-none hover:bg-gray-200"
